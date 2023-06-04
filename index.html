@@ -3,8 +3,6 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- displays site properly based on user's device -->
-
     <link
       rel="icon"
       type="image/png"
@@ -12,34 +10,31 @@
       href="./assets/images/favicon-32x32.png"
     />
     <link rel="stylesheet" href="./style.css" />
-
-    <title>Frontend Mentor | Age calculator app</title>
-
-    <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+    <title>Age calculator app</title>
   </head>
   <body>
     <main>
       <section class="section-input">
         <label for="date">
           Day
-          <input id="day" type="number" min="1" max="31" />
+          <input id="day" aria-describedby="day-input" type="number" min="1" max="31" />
           <p class="error"></p>
         </label>
         <label for="month">
           Month
-          <input id="month" type="number" min="1" max="12" />
+          <input id="month" aria-describedby="month-input" type="number" min="1" max="12" />
           <p class="error"></p>
         </label>
         <label for="year">
           Year
-          <input id="year" type="number" min="1900" max="2024" />
+          <input id="year" aria-describedby="year-input" type="number" min="1900" max="2024" />
           <p class="error"></p>
         </label>
       </section>
       <section class="section-breaker">
         <hr />
-        <div id="calculate" class="direction">
-          <img src="./assets/images/icon-arrow.svg" alt="" />
+        <div id="calculate" aria-label="calculate-age" class="direction">
+          <img src="./assets/images/icon-arrow.svg" alt="Calculate age" />
         </div>
       </section>
       <section class="section-output">
@@ -48,79 +43,6 @@
         <p><mark id="d">-- </mark>days</p>
       </section>
     </main>
-    <script>
-      const inputDay = document.getElementById("day").value;
-      const inputMonth = document.getElementById("month").value;
-      const inputYear = document.getElementById("year").value;
-      const calculateButton = document.querySelector("#calculate");
-
-      const errors = document.querySelectorAll(".error");
-      const labels = document.querySelectorAll("label");
-      const inputs = document.querySelectorAll("input");
-
-      const currentDate = new Date();
-
-      function calculateAge() {
-        const enteredDate = new Date(`${inputDay}/${inputMonth}/${inputYear}`);
-        if (inputDay === "" && inputMonth === "" && inputYear === "") {
-          errors.forEach(
-            (error) => (error.innerHTML = "This field is required.")
-          );
-          labels.forEach((label) => (label.style.color = "hsl(0, 100%, 67%)"));
-          return;
-        } else {
-          errors.forEach((error) => (error.innerHTML = ""));
-          labels.forEach((label) => (label.style.color = "hsl(0, 1%, 44%)"));
-        }
-
-        let years = currentDate.getFullYear() - enteredDate.getFullYear();
-        let months = currentDate.getMonth() - enteredDate.getMonth();
-        let days = currentDate.getDate() - enteredDate.getDate();
-
-        if (days < 0) {
-          months--;
-          days += new Date(
-            currentDate.getFullYear(),
-            currentDate.getMonth(),
-            0
-          ).getDate();
-        }
-
-        if (months < 0) {
-          years--;
-          months += 12;
-        }
-
-        document.querySelector("#yr").innerHTML = `${years} `;
-        document.querySelector("#mo").innerHTML = `${months} `;
-        document.querySelector("#d").innerHTML = `${days} `;
-      }
-
-      calculateButton.addEventListener("click", calculateAge);
-
-      inputs.forEach((input, index) => {
-        input.addEventListener("input", () => {
-          if (input.id === "day") {
-            if (input.value < 1 || input.value > 31) {
-              errors[index].innerHTML = "Invalid day";
-            } else {
-              errors[index].textContent = "";
-            }
-          } else if (input.id === "month") {
-            if (input.value < 1 || input.value > 12) {
-              errors[index].textContent = "Invalid month";
-            } else {
-              errors[index].textContent = "";
-            }
-          } else if (input.id === "year") {
-            if (input.value < 1900 || input.value > 2024) {
-              errors[index].textContent = "Invalid year";
-            } else {
-              errors[index].textContent = "";
-            }
-          }
-        });
-      });
-    </script>
+    <script type="text/javascript" src="./main.js"></script>
   </body>
 </html>

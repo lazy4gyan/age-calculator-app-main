@@ -50,12 +50,16 @@ label {
   text-transform: uppercase;
   color: var(--smokey-grey);
   font-size: 12px;
+  border-color:var(--light-grey);
+  outline-color: var(--light-grey);
 }
 input {
   font-size: 32px;
   margin-top: 0.5rem;
   font-weight: 700;
   width: 6.5rem;
+  padding:.5rem;
+  border-radius: 5px;
 }
 img {
   width: 100%;
@@ -87,11 +91,11 @@ mark {
   border-radius: 50%;
   padding: 1rem;
   cursor: pointer;
-  background-color: var(--off-black);
+  background-color: var(--purple);
 }
 .direction:hover {
   transform: scale(1.1);
-  background-color: var(--purple);
+  background-color: var(--off-black);
 }
 .section-output {
   display: flex;
